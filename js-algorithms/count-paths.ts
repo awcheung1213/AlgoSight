@@ -5,15 +5,19 @@ Write a function, countPaths, that takes in a grid as an argument. In the grid, 
 
 function countPaths(grid: Array<Array<string>>): number{
   let count = 0;
+  const map = new Map<string, number>()
 
   function _countPaths(grid, row = 0, col = 0): number{
-    if (!grid[row][col] || grid[row][col] === 'X') return 0
-    if (grid[row][col] === 'O') return 1
+    if (row == grid.length || col == grid[0].length || grid[row][col] == 'X') return 0;
+    if (row == grid.length - 1 && col == grid[0].length - 1) return 1;
+    if (`row${row}col${col}` in map) return map[`row${row}col${col}`];
     
-    count += _countPaths(grid, row + 1, col)
-    count += _countPaths(grid, row, col + 1)
+    const downwards = _countPaths(grid, row + 1, col)
+    const right = _countPaths(grid, row, col + 1)
 
-    return count
+    map[`row${row}col${col}`] = downwards + right
+
+    return map[`row${row}col${col}`]
   }
 
   count += _countPaths(grid)
