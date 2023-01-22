@@ -33,5 +33,3 @@ function canConcat(string: string, array: Array<string>): boolean {
 };
 
 module.exports = canConcat;
-
-console.log(canConcat("oneisnone", ["on", "e", "is"]))
