@@ -46,6 +46,4 @@ function knightlyNumber<KnightlyNumber>(n, m, kr, kc, pr, pc, memo = {}): number
   return memo[key];
 };
 
-console.log(knightlyNumber(8, 2, 7, 1, 7, 1))
-
 module.exports = knightlyNumber;
