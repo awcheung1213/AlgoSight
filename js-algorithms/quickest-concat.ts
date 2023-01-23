@@ -15,6 +15,7 @@ if currentConcat.length > string.length return Infinity
 
 function quickestConcat(string: string, array: Array<string>): number{
   const map = new Map<string, number>()
+  
   function _quickestConcat(string, array, concat = ""){
     if (concat in map) return map[concat];
     if (string === concat) return 0;
