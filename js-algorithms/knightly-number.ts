@@ -24,12 +24,28 @@ type KnightlyNumber = {
   pc: number
 }
 
-function knightlyNumber<KnightlyNumber>(n, m, kr, kc, pr, pc): number {
-  //if knight is out of bounds return 0
-  if (kr >= n || kc >= n || kr < 0 || kc < 0) return 0;
-  //if knight reaches target return 1
-  if (kr === pr && kc === pc) return 1;
 
+function knightlyNumber<KnightlyNumber>(n, m, kr, kc, pr, pc, memo = {}): number {
+  const key = kr + ',' + kc + ',' + m;
+  //if knight is out of bounds or exceeds the max number of moves return 0
+  if (kr >= n || kc >= n || kr < 0 || kc < 0 || m < 0) return 0;
+  //if knight reaches target return 1
+  if (kr === pr && kc === pc && m == 0) return 1;
+  //if knight coordinate has already been visited return its stored value
+  if (key in memo) return memo[key]
+  
+  memo[key] = knightlyNumber(n, m - 1, kr + 2, kc + 1, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr + 2, kc - 1, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr - 2, kc + 1, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr - 2, kc - 1, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr + 1, kc + 2, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr - 1, kc + 2, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr + 1, kc - 2, pr, pc, memo) +
+  knightlyNumber(n, m - 1, kr - 1, kc - 2, pr, pc, memo)
+  
+  return memo[key];
 };
+
+console.log(knightlyNumber(8, 2, 7, 1, 7, 1))
 
 module.exports = knightlyNumber;
