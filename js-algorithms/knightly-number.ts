@@ -14,3 +14,22 @@ pr = the target row
 pc = the target column
 The function should return the number of different ways the knight can move to the target in exactly m moves. The knight can revisit positions of the board if needed. The knight cannot move out-of-bounds of the board. You can assume that rows and columns are 0-indexed. This means that if n = 8, there are 8 rows and 8 columns numbered 0 to 7.
  */
+
+type KnightlyNumber = {
+  n: number, 
+  m: number, 
+  kr: number, 
+  kc: number, 
+  pr: number, 
+  pc: number
+}
+
+function knightlyNumber<KnightlyNumber>(n, m, kr, kc, pr, pc): number {
+  //if knight is out of bounds return 0
+  if (kr >= n || kc >= n || kr < 0 || kc < 0) return 0;
+  //if knight reaches target return 1
+  if (kr === pr && kc === pc) return 1;
+
+};
+
+module.exports = knightlyNumber;
