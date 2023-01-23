@@ -14,25 +14,26 @@ if currentConcat.length > string.length return Infinity
 
 
 function quickestConcat(string: string, array: Array<string>): number{
-  const map = new Map<string, number>()
-  
-  function _quickestConcat(string, array, concat = ""){
-    if (concat in map) return map[concat];
-    if (string === concat) return 0;
-    if (concat.length > string.length) return Infinity;
-    
-    let minWords = Infinity;
 
-    for (let el of array){
-      const currentMin = 1 + _quickestConcat(string, array, concat + el);
-      // console.log('el',el, 'concat', concat, 'min', currentMin)
-      minWords = Math.min(minWords, currentMin)
+  function _quickestConcat(string, array, concat = "", memo = {}){
+    if (concat in memo) return memo[concat];
+    if (concat === string) return 0;
+    if (concat.length > string.length) return Infinity;
+
+    let min = Infinity;
+
+    for (let substring of array){
+      let attempt = 1 + _quickestConcat(string, array, concat + substring, memo);
+      min = Math.min(min, attempt)
     }
-    map[concat] = minWords;
-    return minWords === Infinity ? -1 : minWords;
+
+    memo[concat] = min;
+    return memo[concat];
   }
 
-  return _quickestConcat(string, array);
+  let minWords = _quickestConcat(string, array);
+
+  return minWords == Infinity ? -1 : minWords;
 };
 
 module.exports = quickestConcat;
