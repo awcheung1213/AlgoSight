@@ -21,5 +21,4 @@ function pairedParentheses(string: string, stack: Array<string> = []): boolean {
   return pairedParentheses(string.slice(1), stack);
 }
 
-console.log(pairedParentheses("(david)((abby))"))
 module.exports = pairedParentheses;
