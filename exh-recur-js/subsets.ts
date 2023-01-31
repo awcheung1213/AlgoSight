@@ -4,15 +4,27 @@ The elements within the subsets and the subsets themselves may be returned in an
 You may assume that the input array contains unique elements.
  */
 
+
+//iterate through the array
+//at each char push into finalArray
+//
 function subsets(array: Array<string>): Array<Array<string>>{
-  const allSubArrays: Array<Array<string>> = [];
-  if (array.length == 0) return [];
+  if (array.length == 0) return [[]];
 
-  for (let i = 0; i < array.length; i++){
-    
-  }
-
-  return allSubArrays;
+  const firstEl = array[0]
+  const subsetsWithoutEl = subsets(array.slice(1));
+  const subsetsWithEl = subsetsWithoutEl.map((sub) => [firstEl, ...sub])
+  return [...subsetsWithoutEl, ...subsetsWithEl]
 };
 
+console.log(subsets(['a', 'b']))
+
+/*
+[ 
+  [], 
+  [ 'b' ], 
+  [ 'a' ], 
+  [ 'a', 'b' ] 
+]
+*/
 module.exports = subsets;
