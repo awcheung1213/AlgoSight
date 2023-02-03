@@ -17,7 +17,6 @@ function permutations <T>(array: Array<T>): Array<Array<T>>{
   const possiblePerms = permutations(array.slice(1))
 
   const allPermutations: Array<Array<T>> = [];
-
   for (let perm of possiblePerms){
     for (let i = 0; i <= perm.length; i++){
       allPermutations.push([...perm.slice(0, i), firstEl, ...perm.slice(i)])
