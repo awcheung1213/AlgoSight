@@ -1,19 +1,19 @@
-  //init output = []
-  //init start = 0
-  //init charCount = {}
-  //init matches = 0
-  //fill charCount with chars in pattern as keys and occurrences as values
-  //init for loop with end = 0
-    //if char at end in charCount
-      //decrement charCount 
-      //if char at end in charCount === 0, increment matches
-      //if matches === num of keys in charCount, add start to output
-    //if window length > pattern length, shrink window
-      //if char at start in charCount
-        //if char at start in charCount === 0, decrement matches
-        //increment char at start in charCount
-      //start++
-      
+//init output = []
+//init start = 0
+//init charCount = {}
+//init matches = 0
+//fill charCount with chars in pattern as keys and occurrences as values
+//init for loop with end = 0
+//if char at end in charCount
+  //decrement charCount 
+  //if char at end in charCount === 0, increment matches
+  //if matches === num of keys in charCount, add start to output
+//if window length > pattern length, shrink window
+  //if char at start in charCount
+    //if char at start in charCount === 0, decrement matches
+    //increment char at start in charCount
+  //start++
+  
 function problemChallenge2(string: string, pattern: string): Array<number> {
   const output: Array<number> = [];
   let start = 0;
