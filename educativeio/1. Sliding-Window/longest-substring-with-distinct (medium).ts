@@ -23,12 +23,12 @@ function longest_substring_distinct(string: string, k: number): number {
     }
     //shrink our window, until we are left with < k distinct chars
     while (Object.keys(characterCount).length > k) {
-      longestLength = Math.max(longestLength, end - start);
       let charStart = string[start];
       characterCount[charStart] -= 1;
       if (characterCount[charStart] === 0) delete characterCount[charStart];
       start++; //shrink our window
     }
+    longestLength = Math.max(longestLength, end - start + 1);
   }
   return longestLength;
 };

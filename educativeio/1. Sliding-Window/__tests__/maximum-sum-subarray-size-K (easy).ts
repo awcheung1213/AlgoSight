@@ -1,4 +1,4 @@
-const max_sum_subarray_test = require('../maximum-sum-subarray-size-K');
+const max_sum_subarray_test = require('../maximum-sum-subarray-size-K (easy)');
 
 describe('max_sum_subarray_test', () => {
   it('should', () => {
