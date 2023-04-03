@@ -7,6 +7,10 @@
   //else increment pointer
 //return array
 
+//use pointers to section off the 0s, 1s, and 2s
+//use a third pointer to check each number in the array and swap with values of the other two pointers based on its value
+//return the array
+
 function dutchNationalFlag(array: Array<number>): Array<number> {
   let low = 0
   let high = array.length - 1;

@@ -9,6 +9,11 @@
   //iterate through current subarray and push all of its subarrays into output
 //return output
 
+//extend a window and track the product of the window
+//when the window product exceeds the target shrink the window
+//at each instance of window, push all subarrays starting from the end of the window to avoid duplicates with previous window
+//return output
+
 function subarraysProductLTT(array: Array<number>, target: number): Array<Array<number>> {
   const output: Array<Array<number>> = [];
   let product = 1;
@@ -21,11 +26,14 @@ function subarraysProductLTT(array: Array<number>, target: number): Array<Array<
       product /= valueStart;
       start += 1;
     }
+    console.log(array.slice(start, end + 1))
     let tempArray: Array<number> = [];
-    for (let i = end; i > start - 1; i--) {
+    for (let i = end; i >= start; i--) {
       tempArray.unshift(array[i]);
       output.push(tempArray.slice()); //need to slice to create new objects in memory, otherwise the output array will be mutated
+      console.log('temp: ', tempArray)
     }
+    console.log('output', output)
   }
   return output;
 };  
