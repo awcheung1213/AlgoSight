@@ -11,24 +11,26 @@
   //update longestLength
 //return longestLength
 
+//extend a window and store total number of 1s
+//when our window contains more than k 0s shrink
+//return longest length with all ones
+
 function longestSubarrayReplace(array: Array<number>, k: number): number {
   let longestLength = 0;
   let start = 0;
-  let maxCountOfOnes = 0;
-  const charCount = {
+  const chars = {
     0: 0,
-    1: 0
-  }
+    1: 0,
+  };
   for (let end = 0; end < array.length; end++) {
-    let charEnd = array[end];
-    charCount[charEnd] += 1;
-    maxCountOfOnes = charCount[1]
-    if (end - start + 1 - maxCountOfOnes > k) {
-      let charStart = array[start];
-      charCount[charStart] -= 1;
-      start++;
+    let endChar = array[end];
+    chars[endChar] += 1;
+    while (chars[0] > k) {
+      let startChar = array[start];
+      chars[startChar] -= 1;
+      start += 1;
     }
-    longestLength = Math.max(longestLength, end - start + 1)
+    longestLength = Math.max(longestLength, end - start + 1);
   }
   return longestLength;
 }; 

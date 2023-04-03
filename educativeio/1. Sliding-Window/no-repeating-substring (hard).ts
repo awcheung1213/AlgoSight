@@ -10,27 +10,28 @@
   //update longestLength
 //return longestLength
 
+//extend a window and store the longest length of window with no repeating chars
+//shrink the window if we encounter a repeating char
+//return the longest length
+
 function noRepeatingSubstring(string: string): number {
   let longestLength = 0;
   let start = 0;
-  let windowLength = 0;
-  const visitedChars = {};
-  for (let end = 0; end < string.length; end++){
-    let char = string[end];
-    if (char in visitedChars) {
-      visitedChars[char] += 1;
+  const chars = {};
+  for (let end = 0; end < string.length; end ++){
+    let charEnd = string[end];
+    if (charEnd in chars) {
+      chars[charEnd] += 1;
     }
     else {
-      visitedChars[char] = 1;
+      chars[charEnd] = 1;
     }
-    windowLength += 1;
-    while (visitedChars[char] > 1) {
+    while (chars[charEnd] > 1) {
       let charStart = string[start];
-      visitedChars[charStart] -= 1;
+      chars[charStart] -= 1;
       start += 1;
-      windowLength -= 1;
     }
-    longestLength = Math.max(longestLength, windowLength)
+    longestLength = Math.max(longestLength, end - start + 1)
   }
   return longestLength;
 };
